@@ -8,59 +8,67 @@
  */
 class Productions extends CI_Model
 {
-    // 2D array of name : ingredients composing the recipe
+    // Array of arrays of recipes
     var $recipes = array(
-        'Avocado'       =>  array(
+        array(
             'name'      => 'Avocado',
+            'href'      => 'Avocado',
             'toppings'  => array('Avocado', 'Cream Cheese', 'Japanese Mayo', 'Soy Sauce', 'Tomato'),
             'meat'      => array('Beef'),
             'bun'       => array('Plain')
         ),
 
-        'Shrimpy Chili' => array(
-            'name'      => 'Shrimpy Chilli',
-            'toppings'  => array('Shrimp', 'Chilli Sauce', 'Lettuce', 'Tomato'),
+        array(
+            'name'      => 'Shrimpy Chili',
+            'href'      => 'ShrimpyChili',
+            'toppings'  => array('Shrimp', 'Chili Sauce', 'Lettuce', 'Tomato'),
             'meat'      => array('Shrimp Sausage'),
             'bun'       => array('Whole Wheat')
         ),
 
-        'Salmon Dog'    => array(
+        array(
             'name'      => 'Salmon Dog',
+            'href'      =>  'SalmonDog',
             'toppings'  => array('Onion', 'Relish', 'House Dressing'),
             'meat'      => array('Salmon'),
             'bun'       => array('Whole Wheat')
         ),
 
-        'Croquette'     => array(
+        array(
             'name'      => 'Croquette',
+            'href'      => 'Croquette',
             'toppings'  => array('Japanese Croquettes', 'Mashed Potato'),
             'meat'      => array('Arabiki Sausage'),
             'bun'       => array('Plain')
         ),
 
-        'Three Cheese Smokey' => array(
+        array(
             'name'      => 'Three Cheese Smokey',
+            'href'      => 'ThreeCheeseSmokey',
             'toppings'  => array('Cheddar', 'Mozzarella', 'Cream Cheese'),
             'meat'      => array('Beef'),
             'bun'       => array('Whole Wheat')
         ),
 
-        'Tonkatsu' => array(
+        array(
             'name'      => 'Tonkatsu',
+            'href'      => 'Tonkatsu',
             'toppings'  => array('Cabbage', 'House Dressing', 'Onion'),
             'meat'      => array('Pork'),
             'bun'       => array('Plain')
         ),
 
-        'Kobe Beef' => array(
+        array(
             'name'      => 'Kobe Beef',
+            'href'      => 'KobeBeef',
             'toppings'  => array('Ketchup', 'Bean Curd', 'Lettuce', 'Kobe Dressing'),
             'meat'      => array('Kobe Beef'),
             'bun'       => array('Brioche')
         ),
 
-        'Ebi Tempura' => array(
+        array(
             'name'      => 'Ebi Tempura',
+            'href'      => 'EbiTempura',
             'toppings'  => array('Shrimp', 'Seaweed', 'Relish', 'Lettuce'),
             'meat'      => array('Shrimp Sausage'),
             'bun'       => array('Plain')
