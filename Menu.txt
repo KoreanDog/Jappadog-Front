@@ -1,0 +1,35 @@
+Terimayo
+	- Pork Sausage
+	- Teriyaki sauce
+	- Mayo
+	- Seaweed
+	- Bun
+Oroshi
+	- Pork Sausage
+	- Bun
+	- Radish
+	- Soya sauce
+Spicy Cheese
+	- Pork Sausage
+	- Bun
+	- Cheese
+	- Teriyaki sauce
+	- Mayo
+	- Seaweed
+Salmon Dog
+	- Pork Sausage
+	- Bun
+	- Onion
+	- Special Dressing
+Tonkatsu
+	- Pork Cutlet
+	- Bun
+	- Cabbage
+	- Special Dressing
+Avocado
+	- Pork Sausage
+	- Bun
+	- Avocado
+	- Cream Cheese
+	- Mayo
+	- Soya sauce
