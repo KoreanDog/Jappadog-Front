@@ -20,7 +20,7 @@ class Welcome extends Application
 	public function index()
 	{
 		$this->data['pagebody'] = 'homepage';
-		$this->data['pagetitle'] = "JappaDog";
+		$this->data['pagetitle'] = 'JappaDog';
 		$this->render(); 
 	}
 

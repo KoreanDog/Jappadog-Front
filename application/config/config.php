@@ -1,6 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+//the menu basics (text navbar)
+$config['menu_choices'] = array(
+    'menudata' => array(
+        array('name' => 'Homepage', 'link' => '#'),
+        array('name' => 'Admin', 'link' => '/Admin'),
+        array('name' => 'Receiving', 'link' => '/Receiving'),
+        array('name' => 'Production', 'link' => '/Production'),
+        array('name' => 'Sales', 'link' => '/Sales'),
+        )
+    );
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

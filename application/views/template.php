@@ -15,13 +15,7 @@
 		<nav class="navbar navbar-inverse navbar-static-top">
 			<a class="navbar-brand" href="#"><img alt="JappaDog" width="30px" height="30px" src="assets/images/terimayo.jpg"></a>
 		  	<div class="container">
-			    <ul class="nav navbar-nav">
-			        <li class="active"><a href="#">Homepage</a></li>
-			        <li><a href="#">Admin</a></li>
-			        <li><a href="#">Receiving</a></li>
-			        <li><a href="#">Production</a></li>
-			        <li><a href="#">Sales</a></li>
-			    </ul>
+		  		{menubar}
 		    </div>
 		</nav>
         <div id="container">
