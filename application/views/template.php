@@ -13,7 +13,7 @@
 	<script type="text/javascript" src="/assets/js/bootstrap.js"></script>
 	<body>
 		<nav class="navbar navbar-inverse navbar-static-top">
-			<a class="navbar-brand" href="#"><img alt="JappaDog" width="30px" height="30px" src="assets/images/terimayo.jpg"></a>
+			<a class="navbar-brand" href="/welcome"><img alt="JappaDog" width="30px" height="30px" src="/assets/images/terimayo.jpg"></a>
 		  	<div class="container">
 		  		{menubar}
 		    </div>

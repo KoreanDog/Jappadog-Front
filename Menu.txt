@@ -1,35 +1,52 @@
 Terimayo
-	- Pork Sausage
-	- Teriyaki sauce
-	- Mayo
-	- Seaweed
-	- Bun
+	- Pork Sausage 		x 1
+	- Teriyaki sauce 	x 1
+	- Mayo 				x 1
+	- Seaweed			x 1
+	- Bun				x 1
 Oroshi
-	- Pork Sausage
-	- Bun
-	- Radish
-	- Soya sauce
+	- Pork Sausage		x 1
+	- Bun				x 1
+	- Radish			x 1
+	- Soya sauce		x 1
 Spicy Cheese
-	- Pork Sausage
-	- Bun
-	- Cheese
-	- Teriyaki sauce
-	- Mayo
-	- Seaweed
+	- Pork Sausage 		x 1
+	- Bun				x 1
+	- Cheese			x 1 
+	- Teriyaki sauce 	x 1
+	- Mayo				x 1
+	- Seaweed			x 1
 Salmon Dog
-	- Pork Sausage
-	- Bun
-	- Onion
-	- Special Dressing
+	- Pork Sausage		x 1
+	- Bun				x 1
+	- Onion				x 1
+	- Special Dressing	x 1
 Tonkatsu
-	- Pork Cutlet
-	- Bun
-	- Cabbage
-	- Special Dressing
+	- Pork Cutlet		x 1
+	- Bun				x 1
+	- Cabbage			x 1
+	- Special Dressing	x 1
 Avocado
-	- Pork Sausage
-	- Bun
-	- Avocado
-	- Cream Cheese
-	- Mayo
-	- Soya sauce
+	- Pork Sausage		x 1
+	- Bun				x 1
+	- Avocado			x 1
+	- Cream Cheese		x 1
+	- Mayo				x 1
+	- Soya sauce		x 1
+
+Total ingredients needed
+	- Pork Sausage 		x 5
+	- Teriyaki sauce 	x 2
+	- Mayo 				x 3
+	- Seaweed			x 2
+	- Bun				x 6
+	- Radish			x 1
+	- Soya sauce		x 2
+	- Cheese			x 1 
+	- Onion				x 1
+	- Special Dressing	x 2
+	- Pork Cutlet		x 1
+	- Cabbage			x 1
+	- Avocado			x 1
+	- Cream Cheese		x 1
+
