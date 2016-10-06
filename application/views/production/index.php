@@ -1,7 +1,10 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: lacie
- * Date: 06/10/16
- * Time: 1:17 PM
- */
+<div class="container">
+    <div class="row">
+        <ul class="list-group">
+            {recipes}
+            <li class="list-group-item"> {name} </li>
+            {/recipes}
+        </ul>
+    </div>
+</div>
+
