@@ -23,6 +23,14 @@ class Supply extends Application
 		$this->data['pagetitle'] = 'JappaDog';
 
 		$source = $this->supplies->all();
+
+		function cmp($a, $b)
+		{
+			return strcmp($a['name'], $b['name']);
+		}
+
+		usort($source, "cmp");
+
 		$ingredients = array ();
 		foreach ($source as $record)
 		{
@@ -35,5 +43,6 @@ class Supply extends Application
 
 		$this->render();
 	}
+
 
 }
