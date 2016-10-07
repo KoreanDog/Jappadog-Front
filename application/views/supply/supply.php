@@ -1,10 +1,10 @@
 <div class="row row-centered">
   <div class="table-responsive">
-    <table class="table col-lg-8 col-centered">
+    <table class="table col-lg-12 col-centered">
       <tr>
         <th>Ingredient</th>
         <th class="text-center">In Stock</th>
-        <td></td>
+        <th></th>
         <th class="text-center">Order Quantity</th>
         <th class="text-center">Order Measurment</th>
         <th></th>
