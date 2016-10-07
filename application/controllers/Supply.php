@@ -26,7 +26,10 @@ class Supply extends Application
 		$ingredients = array ();
 		foreach ($source as $record)
 		{
-			$ingredients[] = array ('name' => $record['name'], 'quantity' => $record['quantity']);
+			$ingredients[] = array ('name' => $record['name'],
+															'instock' => $record['instock'],
+															'receiving' => $record['receiving'],
+															'measurement' => $record['measurement']);
 		}
 		$this->data['ingredients'] = $ingredients;
 
