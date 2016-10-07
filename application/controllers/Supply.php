@@ -19,7 +19,7 @@ class Supply extends Application
 	 */
 	public function index()
 	{
-		$this->data['pagebody'] = 'supply';
+		$this->data['pagebody'] = 'supply/supply';
 		$this->data['pagetitle'] = 'JappaDog';
 
 		$source = $this->supplies->all();
