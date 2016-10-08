@@ -19,7 +19,7 @@ class Admin extends Application
 	 */
 	public function index()
 	{
-		$this->data['pagebody'] = 'adminpage';
+		$this->data['pagebody'] = '/admin/adminpage';
 		$this->data['pagetitle'] = 'Administration Panel';
 
 
@@ -29,27 +29,41 @@ class Admin extends Application
 
 	public function supplies()
 	{
-		$this->data['pagebody'] = 'adminpage';
+		$this->data['pagebody'] = '/admin/suppliespage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'SUPPLIES';
+
+		$receivings = $this->receivings->all();
+
+		$this->data['supplies']=$receivings;
 
 		$this->render(); 
 	}
 
 	public function recipes()
 	{
-		$this->data['pagebody'] = 'adminpage';
+		$this->data['pagebody'] = '/admin/recipespage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'RECIPES';
+
+		$recipes = $this->productions->all();
+
+		$this->data['recipes']=$recipes;
+
 		
 		$this->render(); 
 	}
 
 	public function stock()
 	{
-		$this->data['pagebody'] = 'adminpage';
+		$this->data['pagebody'] = '/admin/stockpage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'STOCK';
+
+		$stock = $this->Stock->all();
+
+		$this->data['stock']=$stock;
+
 
 		$this->render(); 
 	}
