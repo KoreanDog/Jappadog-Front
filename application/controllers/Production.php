@@ -20,23 +20,24 @@ class Production extends Application
 
     public function recipe($name)
     {
-        $supplies = $this->supplies->all();
         $recipe = $this->productions->get($name);
         $ingredients = array();
 
         foreach ($recipe['toppings'] as $topping)
         {
-            foreach ($supplies as $supply)
+            $supplies = $this->supplies->get($topping);
+            if ($supplies != null)
             {
-                if ($topping === $supply['name']);
+                $stock = $supplies['instock'];
+                if ($stock < 1)
                 {
-                    $ingredient = array(
-                        'name'  =>  $topping,
-                        'stock' =>  $supply['instock']
-                    );
-                    array_push($ingredients, $ingredient);
-                    break;
+                    $stock = '<span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Out of Stock!';
                 }
+                $ingredient = array(
+                    'name'  =>  $topping,
+                    'stock' =>  $stock
+                );
+                array_push($ingredients, $ingredient);
             }
         }
 
