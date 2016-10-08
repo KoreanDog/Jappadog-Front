@@ -11,7 +11,7 @@
       </tr>
         {ingredients}
       <tr>
-        <td>{name}</td>
+        <td><a href="Receiving/Ingredient/{href}">{name}</a></td>
         <td class="text-center">{instock} units</td>
         <td class="col-lg-1"></td>
         <td class="text-center">{receiving} boxes</td>
