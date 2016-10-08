@@ -33,12 +33,9 @@ class Admin extends Application
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'SUPPLIES';
 
-		$supplies = $this->supplies->all();
+		$receivings = $this->receivings->all();
 
-		$this->data['supplies']=$supplies;
-		$this->data['columntitles']=array(
-				array('title'=>'ID'),array('title'=>'NAME'),array('title'=>'IN STOCK'),array('title'=>'RECEIVING'),array('title'=>'MEASUREMENT'),array('title'=>'EDIT'),array('title'=>'DELETE')
-			);
+		$this->data['supplies']=$receivings;
 
 		$this->render(); 
 	}
@@ -52,9 +49,7 @@ class Admin extends Application
 		$recipes = $this->productions->all();
 
 		$this->data['recipes']=$recipes;
-		$this->data['columntitles']=array(
-				array('title'=>'ID'),array('title'=>'NAME'),array('title'=>'IN STOCK'),array('title'=>'RECEIVING'),array('title'=>'MEASUREMENT'),array('title'=>'EDIT'),array('title'=>'DELETE')
-			);
+
 		
 		$this->render(); 
 	}
@@ -64,6 +59,11 @@ class Admin extends Application
 		$this->data['pagebody'] = '/admin/stockpage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'STOCK';
+
+		$stock = $this->Stock->all();
+
+		$this->data['stock']=$stock;
+
 
 		$this->render(); 
 	}

@@ -11,7 +11,7 @@
         </tr>
             {supplies}
             <tr>
-                <td class="text-center">{id}</td><td class="text-center">{name}</td><td class="text-center">{instock}</td><td class="text-center">{receiving}</td><td class="text-center">{measurement}</td><td class="text-center"><a href="supplies/edit/{id}">EDIT</a></td><td class="text-center"><a href="supplies/delete/{id}">DELETE</a></td>
+                <td class="text-center">{id}</td><td class="text-center">{name}</td><td class="text-center">{instock} units</td><td class="text-center">{receiving}</td><td class="text-center">{measurement}</td><td class="text-center"><a href="supplies/edit/{id}">EDIT</a></td><td class="text-center"><a href="supplies/delete/{id}">DELETE</a></td>
             </tr>
             {/supplies}
         </table>
