@@ -14,7 +14,7 @@ class Supplies extends CI_Model {
 					'receiving' => 1,
 					'measurement' => 100),
     array('id' => '2',
-          'name' => 'Teriyaki sauce',
+          'name' => 'Teriyaki Sauce',
           'instock' => 20,
 					'receiving' => 2,
 					'measurement' => 50),
@@ -91,7 +91,7 @@ class Supplies extends CI_Model {
 	{
 		// iterate over the data until we find the one we want
 		foreach ($this->data as $record)
-			if ($record['id'] == $which)
+			if ($record['name'] == $which)
 				return $record;
 		return null;
 	}
