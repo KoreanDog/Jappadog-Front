@@ -25,7 +25,7 @@ class Production extends Application
 
         foreach ($recipe['toppings'] as $topping)
         {
-            $supplies = $this->supplies->get($topping);
+            $supplies = $this->receivings->get($topping);
             if ($supplies != null)
             {
                 $stock = $supplies['instock'];

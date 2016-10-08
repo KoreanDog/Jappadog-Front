@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Supply extends Application
+class Receiving extends Application
 {
 
 	/**
@@ -19,10 +19,10 @@ class Supply extends Application
 	 */
 	public function index()
 	{
-		$this->data['pagebody'] = 'supply/supply';
+		$this->data['pagebody'] = 'receiving/index';
 		$this->data['pagetitle'] = 'JappaDog';
 
-		$source = $this->supplies->all();
+		$source = $this->receivings->all();
 
 		function cmp($a, $b)
 		{
@@ -30,19 +30,28 @@ class Supply extends Application
 		}
 
 		usort($source, "cmp");
-
-		$ingredients = array ();
-		foreach ($source as $record)
+		/*foreach ($source as $record)
 		{
 			$ingredients[] = array ('name' => $record['name'],
 															'instock' => $record['instock'],
 															'receiving' => $record['receiving'],
 															'measurement' => $record['measurement']);
-		}
-		$this->data['ingredients'] = $ingredients;
+		}*/
+		$this->data['ingredients'] = $source;
 
 		$this->render();
 	}
 
-
+	public function ingredient($name)
+	{
+		$name = str_replace("-"," ",$name);
+		$ingredient = $this->receivings->get($name);
+		$this->data['name'] = $ingredient['name'];
+		$this->data['instock'] = $ingredient['instock'];
+		$this->data['receiving'] = $ingredient['receiving'];
+		$this->data['measurement'] = $ingredient['measurement'];
+		$this->data['pagebody'] = 'receiving/single';
+		$this->data['pagetitle'] = $ingredient['name'];
+		$this->render();
+	}
 }
