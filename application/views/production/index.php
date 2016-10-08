@@ -1,9 +1,12 @@
-<div class="container">
-    <div class="row">
-        <ul class="list-group">
+<div class="row row-centered">
+    <div class="table-responsive">
+        <table class="table col-lg-12 col-centered">
             {recipes}
-            <li class="list-group-item"><a href="Production/Recipe/{href}">{name}</a></li>
+            <tr>
+                <td class="text-center"><a href="Production/Recipe/{href}">{name}</a></td>
+            </tr>
             {/recipes}
+        </table>
         </ul>
     </div>
 </div>

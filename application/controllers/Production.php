@@ -18,9 +18,33 @@ class Production extends Application
         $this->render();
     }
 
-    public function ingredients($name)
+    public function recipe($name)
     {
+        $supplies = $this->supplies->all();
         $recipe = $this->productions->get($name);
+        $ingredients = array();
 
+        foreach ($recipe['toppings'] as $topping)
+        {
+            foreach ($supplies as $supply)
+            {
+                if ($topping === $supply['name']);
+                {
+                    $ingredient = array(
+                        'name'  =>  $topping,
+                        'stock' =>  $supply['instock']
+                    );
+                    array_push($ingredients, $ingredient);
+                    break;
+                }
+            }
+        }
+
+        $this->data['ingredients'] = $ingredients;
+        $this->data['name'] = $recipe['name'];
+        $this->data['desc'] = $recipe['desc'];
+        $this->data['pagebody'] = 'production/recipe';
+        $this->data['pagetitle'] = $recipe['name'];
+        $this->render();
     }
 }
