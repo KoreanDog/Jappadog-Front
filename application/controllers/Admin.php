@@ -19,7 +19,7 @@ class Admin extends Application
 	 */
 	public function index()
 	{
-		$this->data['pagebody'] = 'adminpage';
+		$this->data['pagebody'] = '/admin/adminpage';
 		$this->data['pagetitle'] = 'Administration Panel';
 
 
@@ -29,25 +29,39 @@ class Admin extends Application
 
 	public function supplies()
 	{
-		$this->data['pagebody'] = 'adminpage';
+		$this->data['pagebody'] = '/admin/suppliespage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'SUPPLIES';
+
+		$supplies = $this->supplies->all();
+
+		$this->data['supplies']=$supplies;
+		$this->data['columntitles']=array(
+				array('title'=>'ID'),array('title'=>'NAME'),array('title'=>'IN STOCK'),array('title'=>'RECEIVING'),array('title'=>'MEASUREMENT'),array('title'=>'EDIT'),array('title'=>'DELETE')
+			);
 
 		$this->render(); 
 	}
 
 	public function recipes()
 	{
-		$this->data['pagebody'] = 'adminpage';
+		$this->data['pagebody'] = '/admin/recipespage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'RECIPES';
+
+		$recipes = $this->productions->all();
+
+		$this->data['recipes']=$recipes;
+		$this->data['columntitles']=array(
+				array('title'=>'ID'),array('title'=>'NAME'),array('title'=>'IN STOCK'),array('title'=>'RECEIVING'),array('title'=>'MEASUREMENT'),array('title'=>'EDIT'),array('title'=>'DELETE')
+			);
 		
 		$this->render(); 
 	}
 
 	public function stock()
 	{
-		$this->data['pagebody'] = 'adminpage';
+		$this->data['pagebody'] = '/admin/stockpage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'STOCK';
 
