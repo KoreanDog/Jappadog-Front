@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class StockControl extends Application
+class Sales extends Application
 {
 	/**
 	 * Index Page for this controller.

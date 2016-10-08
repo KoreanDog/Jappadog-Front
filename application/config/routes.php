@@ -51,8 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['production/recipe/:any'] = 'production/recipe';
-$route['Sales/ItemDetail/(:any)'] = 'stockcontrol/itemdetail/$1';
-$route['Sales'] = 'StockControl';
+$route['Sales/ItemDetail/(:any)'] = 'sales/itemdetail/$1';
+$route['Sales'] = 'Sales';
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
