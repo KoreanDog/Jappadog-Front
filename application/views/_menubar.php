@@ -19,7 +19,7 @@
 		<div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
 				<li><a href="/Welcome">Homepage</a></li>
-				<li><a href="/Admin">Admin</a></li>
+				<li><a href="/admin/supplies">Admin</a></li>
 				<li><a href="/Receiving">Receiving</a></li>
 				<li><a href="/Production">Production</a></li>
 				<li><a href="/Sales">Sales</a></li>

@@ -38,17 +38,27 @@ class Receivings extends CI_Model {
 	  $this->rest->option(CURLOPT_PORT, REST_PORT);
 	  return $this->rest->get('/supplies/item/id/' . $name);
 	}
-	// retrieve all of the quotes
-	public function all()
-	{
-		$this->rest->initialize(array('server' => REST_SERVER));
-    $this->rest->option(CURLOPT_PORT, REST_PORT);
-    return $this->rest->get('/supplies');
-	}
+
 
 	public function  update($id)
 	{
 
+	}
+
+	// Return all records as an array of objects
+	function all()
+	{
+	        $this->rest->initialize(array('server' => REST_SERVER));
+	        $this->rest->option(CURLOPT_PORT, REST_PORT);
+	        return $this->rest->get('/supplies');
+	}
+
+	// Delete a record from the DB
+	function delete($key, $key2 = null)
+	{
+	        $this->rest->initialize(array('server' => REST_SERVER));
+	        $this->rest->option(CURLOPT_PORT, REST_PORT);
+	        return $this->rest->delete('/supplies/item/id/' . $key);
 	}
 
 	public function order($id)
@@ -66,4 +76,5 @@ class Receivings extends CI_Model {
 		$record['price'] = $supply->price;
 		$retrieved = $this->rest->put('/supplies', $record);
 	}
+
 }
