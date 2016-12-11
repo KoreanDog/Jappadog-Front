@@ -47,6 +47,7 @@ class Stock extends CI_Model {
 				return $record;
 		return null;
 	}
+
 	// retrieve all of the quotes
 	public function all()
 	{
