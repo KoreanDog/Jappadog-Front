@@ -94,6 +94,21 @@ INSERT INTO `menu` VALUES (1,'Terimayo','The popular hotdog that was listed as \
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+--
+-- Table structure for table `receivingOrders`
+--
+
+DROP TABLE IF EXISTS `receivingOrders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `receivingOrders` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `ingredient` varchar(128) NOT NULL,
+  `amountOrdered` int(10) NOT NULL,
+  `cost` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
