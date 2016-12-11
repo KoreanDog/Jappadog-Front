@@ -19,17 +19,23 @@ class Receiving extends Application
 	 */
 	public function index()
 	{
-		$this->data['pagebody'] = 'receiving/index';
 		$this->data['pagetitle'] = 'JappaDog';
 
-		$source = $this->receivings->all();
+		if($this->session->flashdata('Success')) {
+			$this->data['pagebody'] = 'receiving/success';
+			$this->data['success'] = $this->session->flashdata('Success');
+		} else {
+			$this->data['pagebody'] = 'receiving/index';
+		}
+
+		$ingredients = $this->receivings->all();
 
 		function cmp($a, $b)
 		{
-			return strcmp($a['name'], $b['name']);
+			return strcmp($a->name, $b->name);
 		}
 
-		usort($source, "cmp");
+		usort($ingredients, "cmp");
 		/*foreach ($source as $record)
 		{
 			$ingredients[] = array ('name' => $record['name'],
@@ -37,21 +43,42 @@ class Receiving extends Application
 															'receiving' => $record['receiving'],
 															'measurement' => $record['measurement']);
 		}*/
-		$this->data['ingredients'] = $source;
+		$this->data['ingredients'] = $ingredients;
 
 		$this->render();
 	}
 
-	public function ingredient($name)
+	public function ingredient($id)
 	{
-		$name = str_replace("-"," ",$name);
-		$ingredient = $this->receivings->get($name);
-		$this->data['name'] = $ingredient['name'];
-		$this->data['instock'] = $ingredient['instock'];
-		$this->data['receiving'] = $ingredient['receiving'];
-		$this->data['measurement'] = $ingredient['measurement'];
-		$this->data['pagebody'] = 'receiving/single';
-		$this->data['pagetitle'] = $ingredient['name'];
+		$ingredient = $this->receivings->get($id);
+		$this->data['name'] = $ingredient->name;
+		$this->data['instock'] = $ingredient->instock;
+		$this->data['receiving'] = $ingredient->receiving;
+		$this->data['measurement'] = $ingredient->measurement;
+		$this->data['id'] = $ingredient->id;
+		$this->data['price'] = $ingredient->price;
+
+		if($this->session->flashdata('Success')) {
+			$this->data['pagebody'] = 'receiving/single-success';
+			$this->data['success'] = $this->session->flashdata('Success');
+		} else {
+			$this->data['pagebody'] = 'receiving/single';
+		}
+		$this->data['pagetitle'] = $ingredient->name;
+		$this->session->set_flashdata('Single',$ingredient->name);
 		$this->render();
+	}
+
+	public function order($id)
+	{
+		$this->receivings->order($id);
+		if($this->session->flashdata('Single')) {
+			$name = $this->session->flashdata('Single');
+			$this->session->set_flashdata('Success', 'Succesfully Ordered');
+			redirect('/Receiving/Ingredient/' . $id);
+		} else {
+			$this->session->set_flashdata('Success', 'Succesfully Ordered');
+			redirect('/Receiving');
+		}
 	}
 }
