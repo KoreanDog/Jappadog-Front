@@ -1,3 +1,6 @@
+<div class="alert alert-success">
+  <strong>{success}</strong>
+</div>
 <div class="row row-centered">
   <div class="table-responsive">
     <table class="table col-lg-12 col-centered">
