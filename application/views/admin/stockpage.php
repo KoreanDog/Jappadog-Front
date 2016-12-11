@@ -27,7 +27,7 @@
                 <td class="text-center">{quantity}</td>
                 <td class="text-center">{description}</td>
                 <td class="text-center">${price}</td>
-                <td class="text-center"><a href="stock/edit/{id}">EDIT</a></td>
+                <td class="text-center"><a class="btn btn-default" role="button" href="editstock/{name}">EDIT</a></td>
                 <td class="text-center"><a href="stock/delete/{id}">DELETE</a></td>
         </tr>
         {/stock}
