@@ -75,6 +75,11 @@ class Receivings extends CI_Model {
 		$record['href'] = $supply->href;
 		$record['price'] = $supply->price;
 		$retrieved = $this->rest->put('/supplies', $record);
+		$order['ingredient'] = $supply->name;
+		$order['amountOrdered'] = $supply->receiving * $supply->measurement;
+		$order['cost'] = $supply->price * $supply->receiving;
+		$this->db->set($order);
+		$this->db->insert('receivingOrders');
 	}
 
 }
