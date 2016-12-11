@@ -7,6 +7,7 @@
         <th></th>
         <th class="text-center">Order Quantity</th>
         <th class="text-center">Order Measurment</th>
+        <th class="text-center">Price</th>
         <th></th>
       </tr>
         {ingredients}
@@ -16,6 +17,7 @@
         <td class="col-lg-1"></td>
         <td class="text-center">{receiving} boxes</td>
         <td class="text-center">{measurement} units/box</td>
+        <td class="text-center">${price}/box</td>
         <td><a class="btn btn-default" href="Receiving/Order/{id}" role="button">Order</a></td>
       </tr>
         {/ingredients}
