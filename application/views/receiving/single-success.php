@@ -1,3 +1,6 @@
+<div class="alert alert-success">
+  <strong>{success}</strong>
+</div>
 <div class="row row-centered">
   <div class="table-responsive">
     <table class="table col-lg-12 col-centered">
@@ -9,16 +12,22 @@
         <th class="text-center">Order Measurment</th>
         <th></th>
       </tr>
-        {ingredients}
       <tr>
-        <td><a href="Receiving/Ingredient/{id}">{name}</a></td>
+        <td>{name}</td>
         <td class="text-center">{instock} units</td>
         <td class="col-lg-1"></td>
         <td class="text-center">{receiving} boxes</td>
         <td class="text-center">{measurement} units/box</td>
-        <td><a class="btn btn-default" href="Receiving/Order/{id}" role="button">Order</a></td>
+        <td><a class="btn btn-default" href="../Order/{id}" role="button">Order</a></td>
       </tr>
-        {/ingredients}
+      <td class="col-lg-12">
+        <a href="/Receiving">View All</a>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </table>
   </div>
 </div>

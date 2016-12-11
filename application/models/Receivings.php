@@ -5,114 +5,63 @@
  *
  * @author Derek Larson
  */
-class Receivings extends CI_Model {
 
-	var $data = array(
-		array('id' => '1',
-          'name' => 'Pork Sausage',
-          'instock' => 50,
-					'receiving' => 1,
-					'measurement' => 100,
-					'href' => 'Pork-Sausage'),
-    array('id' => '2',
-          'name' => 'Teriyaki Sauce',
-          'instock' => 20,
-					'receiving' => 2,
-					'measurement' => 50,
-					'href' => 'Teriyaki-Sauce'),
-    array('id' => '3',
-          'name' => 'Mayo',
-          'instock' => 30,
-					'receiving' => 2,
-					'measurement' => 50,
-					'href' => 'Mayo'),
-    array('id' => '4',
-          'name' => 'Seaweed',
-          'instock' => 20,
-					'receiving' => 2,
-					'measurement' => 50,
-					'href' => 'Seaweed'),
-    array('id' => '5',
-          'name' => 'Bun',
-          'instock' => 60,
-					'receiving' => 3,
-					'measurement' => 100,
-					'href' => 'Bun'),
-    array('id' => '6',
-          'name' => 'Radish',
-          'instock' => 10,
-					'receiving' => 2,
-					'measurement' => 25,
-					'href' => 'Radish'),
-    array('id' => '7',
-          'name' => 'Soya sauce',
-          'instock' => 20,
-					'receiving' => 2,
-					'measurement' => 50,
-					'href' => 'Soya-sauce'),
-    array('id' => '8',
-          'name' => 'Cheese',
-          'instock' => 10,
-					'receiving' => 2,
-					'measurement' => 50,
-					'href' => 'Cheese'),
-    array('id' => '9',
-          'name' => 'Onion',
-          'instock' => 10,
-					'receiving' => 2,
-					'measurement' => 25,
-					'href' => 'Onion'),
-    array('id' => '10',
-          'name' => 'Special Dressing',
-          'instock' => 20,
-					'receiving' => 2,
-					'measurement' => 50,
-					'href' => 'Special-Dressing'),
-    array('id' => '11',
-          'name' => 'Pork Cutlet',
-          'instock' => 10,
-					'receiving' => 2,
-					'measurement' => 25,
-					'href' => 'Pork-Cutlet'),
-    array('id' => '12',
-          'name' => 'Cabbage',
-          'instock' => 10,
-					'receiving' => 2,
-					'measurement' => 25,
-					'href' => 'Cabbage'),
-    array('id' => '13',
-          'name' => 'Avocado',
-          'instock' => 10,
-					'receiving' => 1,
-					'measurement' => 25,
-					'href' => 'Avocado'),
-    array('id' => '14',
-          'name' => 'Cream Cheese',
-          'instock' => 20,
-					'receiving' => 1,
-					'measurement' => 50,
-					'href' => 'Cream-Cheese')
-	);
+define('REST_SERVER', 'http://backend.local');  // the REST server host
+define('REST_PORT', $_SERVER['SERVER_PORT']); // the port you are running the server on
+
+class Receivings extends CI_Model {
 
 	// Constructor
 	public function __construct()
 	{
 		parent::__construct();
-	}
 
+		 $this->load->library(['curl', 'format', 'rest']);
+	}
+	function rules() {
+			$config = [
+					['field'=>'id', 'label'=>'Supplies Code', 'rules'=> 'required|integer'],
+					['field'=>'name', 'label'=>'Supplies Name', 'rules'=> 'required'],
+					['field'=>'instock', 'label'=>'Instock Amount', 'rules'=> 'required|integer'],
+					['field'=>'receiving', 'label'=>'Box Amount', 'rules'=> 'required|integer'],
+					['field'=>'measurement', 'label'=>'Amount Per Box', 'rules'=> 'required|integer'],
+					['field'=>'href', 'label'=>'Link Reference', 'rules'=> 'required']
+			];
+      return $config;
+  }
 	// retrieve a single quote
 	public function get($name)
 	{
 		// iterate over the data until we find the one we want
-		foreach ($this->data as $record)
-			if ($record['name'] == $name)
-				return $record;
-		return null;
+		$this->rest->initialize(array('server' => REST_SERVER));
+	  $this->rest->option(CURLOPT_PORT, REST_PORT);
+	  return $this->rest->get('/supplies/item/id/' . $name);
 	}
 	// retrieve all of the quotes
 	public function all()
 	{
-		return $this->data;
+		$this->rest->initialize(array('server' => REST_SERVER));
+    $this->rest->option(CURLOPT_PORT, REST_PORT);
+    return $this->rest->get('/supplies');
 	}
 
+	public function  update($id)
+	{
+
+	}
+
+	public function order($id)
+	{
+		$this->rest->initialize(array('server' => REST_SERVER));
+		$this->rest->option(CURLOPT_PORT, REST_PORT);
+		$supply = $this->rest->get('/supplies/item/id/' . $id);
+		$supply->instock = $supply->instock + ($supply->receiving * $supply->measurement);
+		$record['id'] = $supply->id;
+		$record['instock'] = $supply->instock;
+		$record['receiving'] = $supply->receiving;
+		$record['measurement'] = $supply->measurement;
+		$record['name'] = $supply->name;
+		$record['href'] = $supply->href;
+		$retrieved = $this->rest->put('/supplies', $record);
+	}
 }
