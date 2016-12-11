@@ -25,7 +25,8 @@ class Receivings extends CI_Model {
 					['field'=>'instock', 'label'=>'Instock Amount', 'rules'=> 'required|integer'],
 					['field'=>'receiving', 'label'=>'Box Amount', 'rules'=> 'required|integer'],
 					['field'=>'measurement', 'label'=>'Amount Per Box', 'rules'=> 'required|integer'],
-					['field'=>'href', 'label'=>'Link Reference', 'rules'=> 'required']
+					['field'=>'href', 'label'=>'Link Reference', 'rules'=> 'required'],
+          ['field'=>'price', 'label'=>'Link Reference', 'rules'=> 'required|decimal']
 			];
       return $config;
   }
@@ -62,6 +63,7 @@ class Receivings extends CI_Model {
 		$record['measurement'] = $supply->measurement;
 		$record['name'] = $supply->name;
 		$record['href'] = $supply->href;
+		$record['price'] = $supply->price;
 		$retrieved = $this->rest->put('/supplies', $record);
 	}
 }

@@ -56,6 +56,7 @@ class Receiving extends Application
 		$this->data['receiving'] = $ingredient->receiving;
 		$this->data['measurement'] = $ingredient->measurement;
 		$this->data['id'] = $ingredient->id;
+		$this->data['price'] = $ingredient->price;
 
 		if($this->session->flashdata('Success')) {
 			$this->data['pagebody'] = 'receiving/single-success';
