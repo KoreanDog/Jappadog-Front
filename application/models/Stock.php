@@ -1,7 +1,19 @@
 <?php
 
-class Stock extends CI_Model {
-	var $data = array(
+class Stock extends MY_Model {
+
+/*public static $fields =  ['id','name','description','href','price','inStock'];
+    public static $rules = [
+        ['field'=>'id',     'label'=>'Product ID',  'rules'=>'required|integer'],
+        ['field'=>'name',   'label'=>'Product Name', 'rules'=>'required'],
+        ['field'=>'description',  'label'=>'Description', 'rules'=>''],
+        ['field'=>'href',  'label'=>'href', 'rules'=>''],
+        ['field'=>'instock',  'label'=>'Stock on hand', 'rules'=>'required|integer|greater_than_equal_to[0]'],
+        ['field'=>'price',    'label'=>'Item price',  'rules'=>'required|decimal']
+  ];
+*/
+
+	/*var $data = array(
 		array('id' => '1',
           'name' => 'Terimayo',
           'quantity' => 3,
@@ -32,25 +44,66 @@ class Stock extends CI_Model {
           'quantity' => 1,
           'description' => 'Topped with Avocado, Cream cheese, Japanese mayo and Soy sauce',
           'price' => 9),
-	);
+	);*/
 	// Constructor
-	public function __construct()
+/*  public static function createViewModel($record) {
+        $record['id']        = $record['id'];
+        $record['name']  = $record['name'];
+        $record['description']  = $record['description'];
+        $record['href']  = $record['href'];
+        $record['price']     = moneyFormat($record['price']);
+        $record['instock']   = $record['instock'];
+        return $record;
+    }
+*/	public function __construct()
 	{
 		parent::__construct();
 	}
 
-	public function get($name)
+/*	public function get($name)
 	{
 		// iterate over the data until we find the one we want
 		foreach ($this->data as $record)
 			if ($record['name'] == $name)
 				return $record;
 		return null;
-	}
+    $query = $this->db->get_where('menu', array('name' => $name));
+    $result = $query->result_array();
+    return $result;
+	}*/
 
-	// retrieve all of the quotes
-	public function all()
+      function rules() {
+        $config = [
+          ['field'=>'id',     'label'=>'Product ID',  'rules'=>'required|integer'],
+          ['field'=>'name',   'label'=>'Product Name', 'rules'=>'required'],
+          ['field'=>'description',  'label'=>'Description', 'rules'=>''],
+          ['field'=>'href',  'label'=>'href', 'rules'=>''],
+          ['field'=>'instock',  'label'=>'Stock on hand', 'rules'=>'required|integer|greater_than_equal_to[0]'],
+          ['field'=>'price',    'label'=>'Item price',  'rules'=>'required|decimal']
+        ];
+        return $config;
+    }
+
+
+/*  public function sell($stock, $quantity) {
+        $stock['instock'] = $stock['instock'] - $quantity; 
+        if ($stock['instock'] < 0) {
+            return "Error: You don't have enough " . $stock['name'] . " in stock.";
+        }
+        $this->update($stock);
+        $name = $stock['name'];
+        $data = 'SOLD: '.$quantity.' ' . $name .'(s) on ' . date("Y/m/d") . "\n";
+    if ( !file_put_contents(APPPATH.'models\LogFiles\saleReceipt.txt', $data, FILE_APPEND)){
+         echo 'Unable to write the file';
+    }
+/*        $description = 'SOLD: '.$quantity.' ' . $name .'(s)';
+        $this->Transaction->add($description);*/
+    
+
+/*	public function all()
 	{
 		return $this->data;
-	}
+    $query = $this->db->get('menu');
+    return $result = $query->result_array();
+	}*/
 }
