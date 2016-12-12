@@ -6,8 +6,9 @@
  * Date: 06/10/16
  * Time: 1:20 PM
  */
-class Productions extends CI_Model
+class Productions extends MY_Model
 {
+
     // Array of arrays of recipes
     var $recipes = array(
             'Terimayo'      => array(
@@ -56,22 +57,35 @@ class Productions extends CI_Model
     public function __construct()
     {
         parent::__construct();
+        $this->_tableName = 'menu';
     }
 
-    public function all()
-    {
-        return $this->recipes;
+    // Get all recipes and the menu ingredients from the ingredients table
+    public function allRecipes() {
+        $all = parent::all();
+        $result = [];
+        for ($i = 0; $i < sizeof($all); $i ++) {
+            $id = $all[$i]->id;
+
+            $this->db->select('*')->from('ingredients')->where('recipeid = ' . $all[$i]->id);
+            $query = $this->db->get()->result();
+
+            $result[$id] = array('recipe' => $all[$i], 'ingredients' => $query);
+        }
+        return $result;
     }
 
-    public function get($name)
-    {
-        if (array_key_exists($name, $this->recipes))
-        {
-            return $this->recipes[$name];
-        }
-        else
-        {
-            return null;
-        }
+    public function removeRecipe($id) {
+        $result = parent::delete($id);
+        $this->db->where('recipeid', $id);
+        $this->db->delete('ingredients');
     }
+
+    public function oneRecipe($id) {
+        $one = parent::get($id);
+        $result = [];
+        return $one;
+
+    }
+
 }
