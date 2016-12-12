@@ -14,8 +14,15 @@ class Ingredients extends MY_Model
         $this->_tableName = 'ingredients';
     }
 
-    public function getByRecipeId($id) {
-        //
+    public function updateRecipe($id, $ingredients) {
+        $this->db->where('recipeid', $id);
+        $this->db->delete('ingredients');
+        foreach ($ingredients as $key => $value) {
+            $this->db->insert('ingredients', [
+                'recipeid' => $id,
+                'receivingid' => $value
+            ]);
+        }
     }
 
 }

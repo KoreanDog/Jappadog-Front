@@ -11,6 +11,8 @@ class Production extends Application
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('formfields', 'form');
+        $this->error_messages = array();
     }
 
     public function index()
@@ -115,10 +117,10 @@ class Production extends Application
             $allIng = $this->getAllSupplies();
             $ings = $this->Ingredients->some('recipeid', $id);
 
-            $this->data['name'] = $rec->name;
-            $this->data['id'] = $rec->id;
-            $this->data['description'] = $rec->description;
-            $this->data['price'] = $rec->price;
+            $this->data['id'] = form_hidden('recipeid', $rec->id);
+            $this->data['name'] = makeTextField('Name', 'name', $rec->name);
+            $this->data['price'] = makeTextField('Price', 'price', $rec->price);
+            $this->data['description'] = maketextArea('Description', 'description', $rec->description);
 
             $ingredients = [];
             foreach ($allIng as $ing) {
@@ -126,15 +128,22 @@ class Production extends Application
                 $temp['id'] = $ing->id;
                 $temp['name'] = $ing->name;
                 $temp['instock'] = $ing->instock;
-                $temp['checked'] = '';
+                $temp['checked'] = false;
                 $ingredients[$ing->id] = $temp;
             }
-
             foreach ($ings as $ing) {
-                $ingredients[$ing->receivingid]['checked'] = 'checked';
+                $ingredients[$ing->receivingid]['checked'] = true;
             }
-            //var_dump($ingredients);
-            $this->data['ingredients'] = $ingredients;
+            $checkboxes = [];
+            foreach ($ingredients as $ingredient) {
+                array_push($checkboxes, array(
+                    'checkbox' => form_checkbox('ingredients[]', $ingredient['id'], $ingredient['checked']),
+                    'name' => $ingredient['name']
+                    )
+                );
+            }
+
+            $this->data['ingredients'] = $checkboxes;
             $this->data['pagebody'] = 'production/edit';
             $this->data['pagetitle'] = 'Edit Recipe';
             $this->render();
@@ -150,10 +159,24 @@ class Production extends Application
                 $temp['id'] = $ing->id;
                 $temp['name'] = $ing->name;
                 $temp['instock'] = $ing->instock;
-                $temp['checked'] = '';
+                $temp['checked'] = false;
                 $ingredients[$ing->id] = $temp;
             }
-            $this->data['ingredients'] = $ingredients;
+            $checkboxes = [];
+            foreach ($ingredients as $ingredient) {
+                array_push($checkboxes, array(
+                        'checkbox' => form_checkbox('ingredients[]', $ingredient['id'], $ingredient['checked']),
+                        'name' => $ingredient['name']
+                    )
+                );
+            }
+
+            $this->data['ingredients'] = $checkboxes;
+
+            $this->data['name'] = makeTextField('Name', 'name', null);
+            $this->data['price'] = makeTextField('Price', 'price', null);
+            $this->data['description'] = maketextArea('Description', 'description', null);
+            $this->data['ingredients'] = $checkboxes;
             $this->data['pagebody'] = 'production/create';
             $this->data['pagetitle'] = 'Create Recipe';
             $this->render();
@@ -161,23 +184,66 @@ class Production extends Application
     }
 
     public function createRecipe() {
-        if ($this->authorize()) {
-            redirect('/Production');
+        // try the session first
+        $key = $this->session->userdata('key');
+        $record = $this->session->userdata('record');
+
+        // if not there, nothing is in progress
+        if (empty($record)) {
+            $this->index();
+            return;
         }
-        /**
-         * $_POST and $this->input->post() are always empty and never pass any data back.
-         */
+
+        $incoming = $this->input->post();
+        foreach(get_object_vars($record) as $index => $value)
+            if (isset($incoming[$index]))
+                $record->$index = $incoming[$index];
+        $this->session->set_userdata('record',$record);
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules($this->productions->rules());
+        if ($this->form_validation->run() != TRUE)
+            $this->error_messages = $this->form_validation->error_array();
+
+        $data = [
+            'name' => $incoming['name'],
+            'description' => $incoming['description'],
+            'price' => $incoming['price'],
+            'ingredients' => $incoming['ingredients']
+        ];
+        $this->productions->createRecipe($data);
+        redirect('/Production');
     }
 
     public function saveRecipe() {
-        $input = $this->input->post();
-        $post = $this->input->post();
-        var_dump($post);
+        // try the session first
+        $key = $this->session->userdata('key');
+        $record = $this->session->userdata('record');
 
-        /**
-         * $_POST and $this->input->post() are always empty and never pass any data back.
-         */
+        // if not there, nothing is in progress
+        if (empty($record)) {
+            $this->index();
+            return;
+        }
 
+        $incoming = $this->input->post();
+        foreach(get_object_vars($record) as $index => $value)
+            if (isset($incoming[$index]))
+                $record->$index = $incoming[$index];
+        $this->session->set_userdata('record',$record);
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules($this->productions->rules());
+        if ($this->form_validation->run() != TRUE)
+            $this->error_messages = $this->form_validation->error_array();
+
+        $data = [
+            'name' => $incoming['name'],
+            'description' => $incoming['description'],
+            'price' => $incoming['price']
+        ];
+        $this->productions->updateRecipe($incoming['recipeid'], $data);
+        $this->Ingredients->updateRecipe($incoming['recipeid'], $incoming['ingredients']);
         redirect('/Production');
     }
 
