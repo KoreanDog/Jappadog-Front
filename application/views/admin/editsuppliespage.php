@@ -1,4 +1,4 @@
-<h2>Menu Maintenance - Editing</h2>
+<h2>Edit Supply</h2>
 <form action="/admin/savesupplies/" method="post">
 {supid}
 {supname}
