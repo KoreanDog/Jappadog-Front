@@ -25,8 +25,7 @@ class Receivings extends CI_Model {
 					['field'=>'instock', 'label'=>'Instock Amount', 'rules'=> 'required|integer'],
 					['field'=>'receiving', 'label'=>'Box Amount', 'rules'=> 'required|integer'],
 					['field'=>'measurement', 'label'=>'Amount Per Box', 'rules'=> 'required|integer'],
-					['field'=>'href', 'label'=>'Link Reference', 'rules'=> 'required'],
-          ['field'=>'price', 'label'=>'Link Reference', 'rules'=> 'required|decimal']
+					['field'=>'href', 'label'=>'Link Reference', 'rules'=> 'required']
 			];
       return $config;
   }
@@ -39,10 +38,12 @@ class Receivings extends CI_Model {
 	  return $this->rest->get('/supplies/item/id/' . $name);
 	}
 
-
-	public function  update($id)
+	// Update a record in the DB
+	public function  update($record)
 	{
-
+		$this->rest->initialize(array('server' => REST_SERVER));
+        $this->rest->option(CURLOPT_PORT, REST_PORT);
+        $retrieved = $this->rest->put('/supplies', $record);
 	}
 
 	// Return all records as an array of objects
