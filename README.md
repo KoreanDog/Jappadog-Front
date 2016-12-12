@@ -1,4 +1,4 @@
-Assignment1 for COMP4711
+Assignment2 for COMP4711
 JappaDog pantry project.
 Members:
 	Mike Han
