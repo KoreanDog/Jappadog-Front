@@ -38,7 +38,7 @@
 /**
  * DEBUGGING OPTIONS
  */
-var_dump($_POST);
+
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
