@@ -153,6 +153,7 @@ class Admin extends Application
 
 		//$this->show_any_errors();
 		$this->data['pagetitle'] = 'Edit Item';
+		$this->show_any_errors();
 	    $this->render();
 	}
 
@@ -170,34 +171,28 @@ class Admin extends Application
         // update our data transfer object
 		$incoming = $this->input->post();
 		foreach(get_object_vars($record) as $index => $value)
-    		if (isset($incoming[$index]))
-        $record->$index = $incoming[$index];
+		    if (isset($incoming[$index]))
+		        $record->$index = $incoming[$index];
 		$this->session->set_userdata('record',$record);
-
         // validate
-        $this->load->library('form_validation');
+		$this->load->library('form_validation');
 		$this->form_validation->set_rules($this->receivings->rules());
 		if ($this->form_validation->run() != TRUE)
         $this->error_messages = $this->form_validation->error_array();
 
-    	// check menu code for additions
-		if ($key == null)
-        	if ($this->menu->exists($record->id))
-                $this->error_messages[] = 'Duplicate key adding new menu item';
-        /*
             // save or not
-	   	 if (! empty($this->error_messages)) {
+	    if (! empty($this->error_messages)) {
 	            $this->editsupplies();
 	            return;
-	    }*/
+	    }
 
 	    // update our table, finally!
 	    if ($key == null)
 	            $this->receivings->add($record);
 	    else
-	            $this->receivings->update($record);
-	    // and redisplay the list
-	    redirect('/admin/supplies');
+	            $this->receivings->update(get_object_vars($record));
+	    // clear session variable and redisplay the list
+	    $this->cancel(); 
 	}
 
 	function deletesupplies() {
