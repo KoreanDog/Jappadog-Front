@@ -109,6 +109,29 @@ CREATE TABLE `receivingOrders` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `Stock`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Stock` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `description` varchar(512) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `num_sold` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- Dumping data for table `Stock`
+--
+
+LOCK TABLES `Stock` WRITE;
+/*!40000 ALTER TABLE `Stock` DISABLE KEYS */;
+INSERT INTO `Stock` VALUES (1,'Terimayo','The popular hotdog that was listed as \"one of the must eat items in the world\". The juicy kurobuta sausage elevates the flavours of the terimayo sauce.',5.00,0,1),(2,'Oroshi','Freshly grated radish with a special soya sauce. East meets West.',6.00,0,2),(3,'Spicy Cheese','Another signature dog contains three types of cheese with a hint of spiciness in the sausage. All that topped with Terimayo sauce makes for a tasty hot dog.',7.00,0,2),(4,'Salmon Dog','Topped with fresh onion and our special dressing.',8.00,0,2),(5,'Tonkatsu','Deep fried pork cutlet marinated in tonkatsu sauce topped with fresh cabbage.',5.00,0,1),(6,'Avocado','The Avocado dog is finally coming to the Robson store. Topped with Avocado, Cream cheese, Japanese mayo and Soy sauce.',9.00,0,2);
+/*!40000 ALTER TABLE `Stock` ENABLE KEYS */;
+UNLOCK TABLES;
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
