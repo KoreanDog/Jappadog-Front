@@ -34,12 +34,23 @@ class Admin extends Application
 
 	public function supplies()
 	{
+
+		$userrole = $this->session->userdata('userrole');
+		if ($userrole != 'admin') {
+			$this->data['pagebody'] = 'notauthorized';
+			$this->data['pagetitle'] = 'Access Denied';
+			$message = 'You are not authorized to access this page.';
+			$this->data['content'] = $message;
+
+			$this->render();
+			return;
+		}
+
 		$this->data['pagebody'] = '/admin/suppliespage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'SUPPLIES';
 
-		$this->session->unset_userdata('key');
-    	$this->session->unset_userdata('record');
+		
 
 		$receivings = $this->receivings->all();
 
@@ -50,6 +61,17 @@ class Admin extends Application
 
 	public function recipes()
 	{
+		$userrole = $this->session->userdata('userrole');
+		if ($userrole != 'admin') {
+			$this->data['pagebody'] = 'notauthorized';
+			$this->data['pagetitle'] = 'Access Denied';
+			$message = 'You are not authorized to access this page.';
+			$this->data['content'] = $message;
+
+			$this->render();
+			return;
+		}
+
 		$this->data['pagebody'] = '/admin/recipespage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'RECIPES';
@@ -64,6 +86,17 @@ class Admin extends Application
 
 	public function stock()
 	{
+		$userrole = $this->session->userdata('userrole');
+		if ($userrole != 'admin') {
+			$this->data['pagebody'] = 'notauthorized';
+			$this->data['pagetitle'] = 'Access Denied';
+			$message = 'You are not authorized to access this page.';
+			$this->data['content'] = $message;
+
+			$this->render();
+			return;
+		}
+
 		$this->data['pagebody'] = '/admin/stockpage';
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'STOCK';
@@ -119,6 +152,7 @@ class Admin extends Application
 	$this->data['zsubmit'] = makeSubmitButton('Save', 'Submit changes');
 
 		//$this->show_any_errors();
+		$this->data['pagetitle'] = 'Edit Item';
 	    $this->render();
 	}
 
@@ -150,12 +184,12 @@ class Admin extends Application
 		if ($key == null) 
         	if ($this->menu->exists($record->id))
                 $this->error_messages[] = 'Duplicate key adding new menu item';
-
+        /*
             // save or not
 	   	 if (! empty($this->error_messages)) {
 	            $this->editsupplies();
 	            return;
-	    }
+	    }*/
 
 	    // update our table, finally!
 	    if ($key == null)
