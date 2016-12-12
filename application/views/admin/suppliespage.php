@@ -5,7 +5,7 @@
   <li><a href="/admin/stock">STOCK</a></li>
   <h2><b>{subtitle}</b></h2>
   <table class="table col-lg-12 col-centered">
-
+        <a class="btn btn-default" role="button" href="/admin/addsupply">Add Supply</a>
   			<tr>
             <td class="text-center"><b>ID</b></td>
             <td class="text-center"><b>NAME</b></td>
