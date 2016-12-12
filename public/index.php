@@ -35,6 +35,9 @@
  * @since	Version 1.0.0
  * @filesource
  */
+/**
+ * DEBUGGING OPTIONS
+ */
 var_dump($_POST);
 /*
  *---------------------------------------------------------------
