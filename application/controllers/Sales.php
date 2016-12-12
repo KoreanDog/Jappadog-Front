@@ -42,7 +42,7 @@ class Sales extends Application
         $this->data['pagebody'] = 'sales_menu';
         $source = $this->Stock->all();
         $this->data['stock'] = $source;    // allows use variables in views
-        $this->render('template_sales');
+        $this->render();
     }
     public function checkout() {
         $order = new Order($this->session->userdata('order'));
