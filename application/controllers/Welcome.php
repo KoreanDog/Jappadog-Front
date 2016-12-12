@@ -20,6 +20,17 @@ class Welcome extends Application
 	public function index()
 	{
 
+		$userrole = $this->session->userdata('userrole');
+		if ($userrole != 'admin' && $userrole != 'user') {
+			$this->data['pagebody'] = 'notauthorized';
+			$this->data['pagetitle'] = 'Access Denied';
+			$message = 'You are not authorized to access this page.';
+			$this->data['content'] = $message;
+
+			$this->render();
+			return;
+		}
+		
 		$this->data['pagebody'] = 'homepage';
 		$this->data['pagetitle'] = 'JappaDog';
 		$this->data['subtitle'] = 'Sales #';
