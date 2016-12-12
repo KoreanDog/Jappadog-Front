@@ -46,6 +46,25 @@ class Receivings extends CI_Model {
         $retrieved = $this->rest->put('/supplies', $record);
 	}
 
+	// Add a record to the DB
+	function add($record)
+	{
+	        $this->rest->initialize(array('server' => REST_SERVER));
+	        $this->rest->option(CURLOPT_PORT, REST_PORT);
+	        $retrieved = $this->rest->post('/supplies', $record);
+	}
+
+	// Create a new data object.
+	// Only use this method if intending to create an empty record and then populate it.
+	function create()
+	{
+	    $names = ['id','name','instock','receiving','measurement','href'];
+	    $object = new StdClass;
+	    foreach ($names as $name)
+	        $object->$name = "";
+	    return $object;
+	}
+
 	// Return all records as an array of objects
 	function all()
 	{

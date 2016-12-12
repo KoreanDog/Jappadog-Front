@@ -195,6 +195,15 @@ class Admin extends Application
 	    $this->cancel(); 
 	}
 
+	function addsupply() {
+	    $key = NULL;
+	    $record = $this->receivings->create();
+
+	    $this->session->set_userdata('key', $key);
+	    $this->session->set_userdata('record', $record);    
+	    $this->editsupplies();
+	}
+
 	function deletesupplies() {
 	        $key = $this->session->userdata('key');
 	        $record = $this->session->userdata('record');
