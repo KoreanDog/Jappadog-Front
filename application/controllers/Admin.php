@@ -29,7 +29,7 @@ class Admin extends Application
 
 
 
-		$this->render(); 
+		$this->render();
 	}
 
 	public function supplies()
@@ -50,13 +50,13 @@ class Admin extends Application
 		$this->data['pagetitle'] = 'Administration Panel';
 		$this->data['subtitle'] = 'SUPPLIES';
 
-		
+
 
 		$receivings = $this->receivings->all();
 
 		$this->data['supplies']=$receivings;
 
-		$this->render(); 
+		$this->render();
 	}
 
 	public function recipes()
@@ -80,8 +80,8 @@ class Admin extends Application
 
 		$this->data['recipes']=$recipes;
 
-		
-		$this->render(); 
+
+		$this->render();
 	}
 
 	public function stock()
@@ -106,7 +106,7 @@ class Admin extends Application
 		$this->data['stock']=$stock;
 
 
-		$this->render(); 
+		$this->render();
 	}
 
 	public function editstock($name=null) {
@@ -114,7 +114,7 @@ class Admin extends Application
 		$record = $this->Stock->get($name);
 
 		$this->data['pagebody'] = '/admin/editstockpage';
-    	
+
     	// build the form fields
 		$this->data['sid'] = makeTextField('ID', 'id', $record['id']);
 		$this->data['sname'] = makeTextField('Name', 'name', $record['name']);
@@ -127,7 +127,7 @@ class Admin extends Application
 	}
 
 	function editsupplies($id=null) {
-    
+
 	// try the session first
     $key = $this->session->userdata('key');
     $record = $this->session->userdata('record');
@@ -157,7 +157,7 @@ class Admin extends Application
 	}
 
 	function savesupplies() {
-		
+
         // try the session first
         $key = $this->session->userdata('key');
         $record = $this->session->userdata('record');
@@ -181,7 +181,7 @@ class Admin extends Application
         $this->error_messages = $this->form_validation->error_array();
 
     	// check menu code for additions
-		if ($key == null) 
+		if ($key == null)
         	if ($this->menu->exists($record->id))
                 $this->error_messages[] = 'Duplicate key adding new menu item';
         /*
@@ -197,8 +197,7 @@ class Admin extends Application
 	    else
 	            $this->receivings->update($record);
 	    // and redisplay the list
-	    $this->supplies();
-
+	    redirect('/admin/supplies');
 	}
 
 	function deletesupplies() {
@@ -229,7 +228,7 @@ class Admin extends Application
 	function cancel() {
 	    $this->session->unset_userdata('key');
 	    $this->session->unset_userdata('record');
-	    $this->supplies();
+	    redirect('/admin/supplies');
 	}
 
 }
