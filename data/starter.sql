@@ -122,9 +122,6 @@ CREATE TABLE `Stock` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
-select * from stock
-
 --
 -- Dumping data for table `Stock`
 --
