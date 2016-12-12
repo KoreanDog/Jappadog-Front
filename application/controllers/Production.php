@@ -184,26 +184,7 @@ class Production extends Application
     }
 
     public function createRecipe() {
-        // try the session first
-        $key = $this->session->userdata('key');
-        $record = $this->session->userdata('record');
-
-        // if not there, nothing is in progress
-        if (empty($record)) {
-            $this->index();
-            return;
-        }
-
         $incoming = $this->input->post();
-        foreach(get_object_vars($record) as $index => $value)
-            if (isset($incoming[$index]))
-                $record->$index = $incoming[$index];
-        $this->session->set_userdata('record',$record);
-
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules($this->productions->rules());
-        if ($this->form_validation->run() != TRUE)
-            $this->error_messages = $this->form_validation->error_array();
 
         $data = [
             'name' => $incoming['name'],
@@ -216,21 +197,7 @@ class Production extends Application
     }
 
     public function saveRecipe() {
-        // try the session first
-        $key = $this->session->userdata('key');
-        $record = $this->session->userdata('record');
-
-        // if not there, nothing is in progress
-        if (empty($record)) {
-            $this->index();
-            return;
-        }
-
         $incoming = $this->input->post();
-        foreach(get_object_vars($record) as $index => $value)
-            if (isset($incoming[$index]))
-                $record->$index = $incoming[$index];
-        $this->session->set_userdata('record',$record);
 
         $this->load->library('form_validation');
         $this->form_validation->set_rules($this->productions->rules());
@@ -242,6 +209,8 @@ class Production extends Application
             'description' => $incoming['description'],
             'price' => $incoming['price']
         ];
+        var_dump($incoming);
+
         $this->productions->updateRecipe($incoming['recipeid'], $data);
         $this->Ingredients->updateRecipe($incoming['recipeid'], $incoming['ingredients']);
         redirect('/Production');
