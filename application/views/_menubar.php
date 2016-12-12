@@ -23,7 +23,7 @@
 				<li><a href="/Receiving">Receiving</a></li>
 				<li><a href="/Production">Production</a></li>
 				<li><a href="/Sales">Sales</a></li>
-				<li><a href="/toggle">Toggle Role</a></li>
+				<li><a href="/Toggle">Toggle Role</a></li>
             </ul>
             <p class="navbar-text navbar-right">Role: {userrole}</p>
 		</div><!-- /.navbar-collapse -->
