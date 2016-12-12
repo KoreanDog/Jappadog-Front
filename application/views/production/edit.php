@@ -1,6 +1,6 @@
 <div class="row row-centered">
 
-    <form action="/Production/SaveRecipe/" method="post">
+    <form action="/Production/SaveRecipe" method="post">
         <input type="hidden" class="form-control" id="recipeid" value="{id}">
 
         <div class="form-group">
