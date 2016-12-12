@@ -17,7 +17,7 @@ class Sales extends Application
 	public function index()
 	{
 		$this->data['pagebody'] = 'sales/menu';
-		$this->data['pagetitle'] = 'JappaDog';
+		$this->data['pagetitle'] = 'Sales';
 		$source = $this->Stock->all();
 		$menu = array ();
 		foreach ($source as $record)
